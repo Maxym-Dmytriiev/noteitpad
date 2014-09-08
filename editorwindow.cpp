@@ -1,5 +1,8 @@
 #include "editorwindow.h"
 #include "ui_editorwindow.h"
+
+#include "aboutwindow.h"
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
@@ -13,7 +16,7 @@ EditorWindow::EditorWindow(QWidget *parent) :
     ui->txtEditorField->installEventFilter(this);
 
     this->setFixedSize(535, 620);
-
+    addAction(ui->actionSaveAs);
     resetToBaseState();
 }
 
@@ -159,6 +162,12 @@ void EditorWindow::on_actionSave_triggered()
     }
 }
 
+void EditorWindow::on_actionSaveAs_triggered()
+{
+    documentWasSaved = false;
+    on_actionSave_triggered();
+}
+
 void EditorWindow::on_actionOpen_triggered()
 {
     bool decision = haveUnsavedChanges();
@@ -269,5 +278,8 @@ bool EditorWindow::haveUnsavedChanges()
     return false;
 }
 
-
-
+void EditorWindow::on_actionHelp_triggered()
+{
+    AboutWindow *about = new AboutWindow(this);
+    about->show();
+}
