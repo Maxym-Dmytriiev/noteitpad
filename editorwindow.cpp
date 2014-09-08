@@ -258,7 +258,7 @@ bool EditorWindow::haveUnsavedChanges()
         // Ask user for actions
         reply = QMessageBox::question(this,
                                       "Unsaved changes",
-                                      "You have unsaved changes. Save them?",
+                                      "You have unsaved changes.\nSave them?",
                                       QMessageBox::Yes|QMessageBox::No|QMessageBox::Cancel);
 
         // Discard changes
