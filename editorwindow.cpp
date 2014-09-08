@@ -213,7 +213,7 @@ void EditorWindow::on_actionOpen_triggered()
 
         // Refresh supplemental text
         QString shortName = QFileInfo(file).baseName();
-        setWindowTitle("NoteItPad - " + shortName);
+        setWindowTitle("NoteIt Pad - " + shortName);
         ui->statusBar->showMessage(QTime::currentTime().toString() + " - Loaded file \"" + shortName + "\"");
     }
 }
