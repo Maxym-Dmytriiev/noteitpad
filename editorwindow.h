@@ -36,6 +36,8 @@ private slots:
 
     void on_actionHelp_triggered();
 
+    void on_actionLecture_triggered();
+
 protected:
     void closeEvent(QCloseEvent *e);
 
@@ -45,6 +47,7 @@ private:
     bool documentWasSaved;
     bool markedListOn;
     bool numberedListOn;
+    bool lectureNameEdit;
     int numberedListCounter;
 
     bool textWasChanged;

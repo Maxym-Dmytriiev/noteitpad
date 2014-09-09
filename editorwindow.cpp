@@ -84,6 +84,18 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
                 ui->txtEditorField->insertPlainText(QString::number(++numberedListCounter) +
                                                     QString::fromUtf8(". "));
             }
+            else if(lectureNameEdit){
+                ui->txtEditorField->textCursor().deletePreviousChar();
+                ui->txtEditorField->insertPlainText(" " + QDate::currentDate().toString() + "\n\n");
+                this->lectureNameEdit = false;
+            }
+
+            /*
+             * A little fix that prevents data appearing again
+             * if enter was pressed after list (or smth else)
+             */
+            if(lectureNameEdit) this->lectureNameEdit = false;
+
             ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
             return true;
         }
@@ -119,6 +131,8 @@ void EditorWindow::resetToBaseState()
     numberedListOn = false;
     numberedListCounter = 1;
 
+    this->lectureNameEdit = false;
+
     textWasChanged = false;
     documentWasSaved = false;
 
@@ -138,6 +152,11 @@ void EditorWindow::on_actionHeader_triggered()
     ui->txtEditorField->insertPlainText("------------");
 }
 
+void EditorWindow::on_actionLecture_triggered()
+{
+    ui->txtEditorField->appendPlainText("\n===Lecture #");
+    this->lectureNameEdit = true;
+}
 
 
 // Save/Load functionality implementation
