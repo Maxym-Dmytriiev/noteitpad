@@ -3,10 +3,12 @@
 
 #include "aboutwindow.h"
 
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
 #include <QTime>
+
 
 EditorWindow::EditorWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,7 +19,9 @@ EditorWindow::EditorWindow(QWidget *parent) :
 
     this->setFixedSize(535, 620);
     addAction(ui->actionSaveAs);
+
     resetToBaseState();
+
 }
 
 EditorWindow::~EditorWindow()
@@ -100,6 +104,7 @@ void EditorWindow::resetToBaseState()
     this->setWindowTitle("NoteIt Pad - " + currentFileName);
     ui->statusBar->showMessage(QTime::currentTime().toString() + " - Created new empty document");
 }
+
 
 void EditorWindow::on_actionLineTildas_triggered()
 {
