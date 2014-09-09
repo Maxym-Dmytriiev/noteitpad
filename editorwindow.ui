@@ -170,7 +170,7 @@
     <string>Inserts a full line of &quot;~&quot; symbols</string>
    </property>
    <property name="shortcut">
-    <string>Alt+`</string>
+    <string>Alt+2</string>
    </property>
   </action>
   <action name="actionHeader">

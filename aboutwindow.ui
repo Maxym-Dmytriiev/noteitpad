@@ -70,7 +70,7 @@ Ctrl + &quot; N &quot; - New file
 
 Alt + &quot; 1 &quot; - Numbered list
 Alt + &quot; + &quot; - Marked list
-Alt + &quot; ~ &quot; - Separator line
+Alt + &quot; 2 &quot; - Separator line
 Alt + &quot; - &quot; - Header line</string>
      </property>
     </widget>
