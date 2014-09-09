@@ -14,8 +14,10 @@ EditorWindow::EditorWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::EditorWindow)
 {
+    QTextCharFormat SetLettersCapital();
     ui->setupUi(this);
     ui->txtEditorField->installEventFilter(this);
+    ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
 
     this->setFixedSize(width(), height());
     addAction(ui->actionSaveAs);
@@ -60,6 +62,14 @@ void EditorWindow::on_actionNumberedList_triggered(bool condition)
     }
 }
 
+QTextCharFormat SetLettersCapital(){
+    //We set letters to capital
+
+    QTextCharFormat capital2;
+    capital2.setFontCapitalization(QFont::Capitalize);
+    return capital2;
+}
+
 bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
 {
     if (obj == ui->txtEditorField && e->type() == QEvent::KeyRelease) {
@@ -74,8 +84,19 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
                 ui->txtEditorField->insertPlainText(QString::number(++numberedListCounter) +
                                                     QString::fromUtf8(". "));
             }
-
+            ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
             return true;
+        }
+        else if(keyEvent->key() == Qt::Key_Space){
+            //Let's make letters capital after a dot!
+
+            QTextCursor cursor = ui->txtEditorField->textCursor();
+            cursor.movePosition(QTextCursor::PreviousCharacter);
+            cursor.select(QTextCursor::WordUnderCursor);
+            QString c = cursor.selectedText().right(1);
+            if(c == "."){
+                ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
+            }
         }
         else {
             return QMainWindow::eventFilter(obj, e);
@@ -84,6 +105,7 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
     else {
         return QMainWindow::eventFilter(obj, e);
     }
+
 }
 
 void EditorWindow::resetToBaseState()
