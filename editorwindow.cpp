@@ -17,7 +17,7 @@ EditorWindow::EditorWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->txtEditorField->installEventFilter(this);
 
-    this->setFixedSize(535, 620);
+    this->setFixedSize(width(), height());
     addAction(ui->actionSaveAs);
 
     resetToBaseState();
@@ -108,7 +108,7 @@ void EditorWindow::resetToBaseState()
 
 void EditorWindow::on_actionLineTildas_triggered()
 {
-    ui->txtEditorField->appendPlainText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    ui->txtEditorField->appendPlainText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
 void EditorWindow::on_actionHeader_triggered()

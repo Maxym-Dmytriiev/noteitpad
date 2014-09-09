@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>620</height>
+    <width>528</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::DefaultContextMenu</enum>
+   <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>NoteIt Text Editor</string>
@@ -26,7 +26,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>535</width>
+      <width>528</width>
       <height>561</height>
      </rect>
     </property>
@@ -145,6 +145,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="separator"/>
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>

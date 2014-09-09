@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>290</width>
-    <height>240</height>
+    <height>249</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
+     <y>3</y>
      <width>291</width>
      <height>241</height>
     </rect>
@@ -33,9 +33,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>0</y>
       <width>271</width>
-      <height>141</height>
+      <height>151</height>
      </rect>
     </property>
     <property name="font">
@@ -53,7 +53,7 @@
        <x>10</x>
        <y>20</y>
        <width>281</width>
-       <height>111</height>
+       <height>121</height>
       </rect>
      </property>
      <property name="font">
@@ -64,6 +64,7 @@
      </property>
      <property name="text">
       <string>Ctrl + &quot; S &quot; - Save file
+Alt  + &quot; S &quot; - Save as...
 Ctrl + &quot; O &quot; - Open file
 Ctrl + &quot; N &quot; - New file
 
