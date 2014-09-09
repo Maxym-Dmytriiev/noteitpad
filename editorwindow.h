@@ -38,6 +38,14 @@ private slots:
 
     void on_actionLecture_triggered();
 
+    void on_searchButton_clicked();
+
+    void on_searchRequest_textChanged(const QString &arg1);
+
+    void on_searchRequest_returnPressed();
+
+    void StartSearch();
+
 protected:
     void closeEvent(QCloseEvent *e);
 

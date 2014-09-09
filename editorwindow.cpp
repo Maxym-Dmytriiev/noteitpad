@@ -329,3 +329,38 @@ void EditorWindow::on_actionHelp_triggered()
     AboutWindow *about = new AboutWindow(this);
     about->show();
 }
+
+void EditorWindow::on_searchButton_clicked()
+{
+    StartSearch();
+}
+
+void EditorWindow::on_searchRequest_textChanged(const QString &arg1)
+{
+    ui->txtEditorField->moveCursor(QTextCursor::Start);
+    //Some improvements fore live search
+    QString s = ui->searchRequest->text();
+    if(!ui->searchRequest->text().isEmpty() && !ui->txtEditorField->find(s)){
+        ui->searchRequest->setStyleSheet("QLineEdit{background: #FF3848;}");
+    }
+    else ui->searchRequest->setStyleSheet("QLineEdit{background: white;}");
+}
+
+void EditorWindow::on_searchRequest_returnPressed()
+{
+    StartSearch();
+}
+
+void EditorWindow::StartSearch(){
+    QString s = ui->searchRequest->text();
+    ui->txtEditorField->setFocus();
+    if(!ui->txtEditorField->find(s)){
+        QMessageBox::information(this,
+                                              "Nothing found",
+                                              "Find reached the starting point of the search",
+                                              QMessageBox::Ok);
+        ui->txtEditorField->setFocus();
+        ui->txtEditorField->moveCursor(QTextCursor::Start);
+        ui->txtEditorField->find(s);
+    }
+}
