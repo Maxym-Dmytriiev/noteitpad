@@ -372,3 +372,11 @@ void EditorWindow::StartSearch(){
         ui->txtEditorField->find(s);
     }
 }
+
+void EditorWindow::on_findLectureButton_clicked()
+{
+    ui->txtEditorField->setFocus();
+    ui->txtEditorField->moveCursor(QTextCursor::Start);
+    QString s = "===Lecture #" + ui->lectureNumberField->text();
+    ui->txtEditorField->find(s);
+}

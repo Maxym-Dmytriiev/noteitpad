@@ -26,8 +26,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>528</width>
-      <height>561</height>
+      <width>529</width>
+      <height>531</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -43,7 +43,7 @@
      <property name="bottomMargin">
       <number>1</number>
      </property>
-     <item row="0" column="1" colspan="2">
+     <item row="0" column="0" rowspan="3" colspan="3">
       <widget class="QPlainTextEdit" name="txtEditorField">
        <property name="font">
         <font>
@@ -51,9 +51,27 @@
          <pointsize>12</pointsize>
         </font>
        </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="backgroundVisible">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
-     <item row="1" column="1" rowspan="2">
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>530</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
       <widget class="QLineEdit" name="searchRequest">
        <property name="mouseTracking">
         <bool>false</bool>
@@ -75,7 +93,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
+     <item>
       <widget class="QPushButton" name="searchButton">
        <property name="minimumSize">
         <size>
@@ -90,8 +108,39 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>530</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Lecture #</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lectureNumberField"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="findLectureButton">
+       <property name="text">
+        <string>Go</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <zorder>wEditorContainer</zorder>
-   <zorder>searchButton</zorder>
+   <zorder>txtEditorField</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="palette">

@@ -48,6 +48,8 @@ private slots:
 
     void SetLetters(bool isCapital);
 
+    void on_findLectureButton_clicked();
+
 protected:
     void closeEvent(QCloseEvent *e);
 
