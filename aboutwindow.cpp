@@ -8,7 +8,7 @@ AboutWindow::AboutWindow(QWidget *parent) :
     ui(new Ui::aboutWindow)
 {
     ui->setupUi(this);
-    setFixedSize(290, 240);
+    setFixedSize(width(), height());
 }
 
 AboutWindow::~AboutWindow()
@@ -19,4 +19,9 @@ AboutWindow::~AboutWindow()
 void AboutWindow::on_btnOpenWebsite_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://bitbucket.org/mdmitriev/noteitpad"));
+}
+
+void AboutWindow::on_btnOpenWebsite_2_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/Maxym-Dmytriiev/noteitpad"));
 }

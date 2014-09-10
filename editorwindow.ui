@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>EditorWindow</class>
  <widget class="QMainWindow" name="EditorWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -242,6 +245,8 @@
    <addaction name="separator"/>
    <addaction name="actionLecture"/>
    <addaction name="separator"/>
+   <addaction name="actionDefinition"/>
+   <addaction name="separator"/>
    <addaction name="actionList"/>
    <addaction name="separator"/>
    <addaction name="actionNumberedList"/>
@@ -251,7 +256,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionLineTildas">
    <property name="text">
-    <string>~~~</string>
+    <string>~~</string>
    </property>
    <property name="toolTip">
     <string>Inserts a full line of &quot;~&quot; symbols</string>
@@ -276,7 +281,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>+ List</string>
+    <string>+ Ls</string>
    </property>
    <property name="toolTip">
     <string>Unmarked list</string>
@@ -302,7 +307,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>123 List</string>
+    <string>123 Ls</string>
    </property>
    <property name="shortcut">
     <string>Alt+1</string>
@@ -370,6 +375,17 @@
    </property>
    <property name="shortcut">
     <string>Alt+3</string>
+   </property>
+  </action>
+  <action name="actionDefinition">
+   <property name="text">
+    <string>-&gt;</string>
+   </property>
+   <property name="toolTip">
+    <string>Write a definition</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Right</string>
    </property>
   </action>
  </widget>

@@ -160,6 +160,12 @@ void EditorWindow::on_actionHeader_triggered()
     SetLetters(true);
 }
 
+void EditorWindow::on_actionDefinition_triggered()
+{
+    ui->txtEditorField->insertPlainText("\n-> ");
+    SetLetters(true);
+}
+
 void EditorWindow::on_actionLecture_triggered()
 {
     ui->txtEditorField->appendPlainText("\n===Lecture #");

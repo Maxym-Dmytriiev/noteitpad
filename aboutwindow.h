@@ -18,6 +18,8 @@ public:
 private slots:
     void on_btnOpenWebsite_clicked();
 
+    void on_btnOpenWebsite_2_clicked();
+
 private:
     Ui::aboutWindow *ui;
 };

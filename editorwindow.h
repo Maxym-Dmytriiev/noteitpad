@@ -50,6 +50,8 @@ private slots:
 
     void on_findLectureButton_clicked();
 
+    void on_actionDefinition_triggered();
+
 protected:
     void closeEvent(QCloseEvent *e);
 
