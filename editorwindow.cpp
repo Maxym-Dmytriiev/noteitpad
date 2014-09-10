@@ -15,7 +15,14 @@ EditorWindow::EditorWindow(QWidget *parent) :
     ui(new Ui::EditorWindow)
 {
     ui->setupUi(this);
-    ui->txtEditorField->installEventFilter(this);
+
+    QPlainTextEdit *newEditor = new QPlainTextEdit;
+    newEditor->setFont(QFont("Lucida Console", 12));
+    editors.append(newEditor);
+    ui->tabWidget->addTab(newEditor, "untitled");
+    txtEditor = newEditor;
+
+    txtEditor->installEventFilter(this);
     SetLetters(true);
 
     this->setFixedSize(width(), height());
@@ -40,7 +47,7 @@ void EditorWindow::on_actionList_triggered(bool condition)
     markedListOn = condition;
 
     if (condition) {
-        ui->txtEditorField->appendPlainText(QString::fromUtf8("+ "));
+        txtEditor->appendPlainText(QString::fromUtf8("+ "));
         SetLetters(true);
     }
 }
@@ -58,7 +65,7 @@ void EditorWindow::on_actionNumberedList_triggered(bool condition)
     }
 
     if (condition) {
-        ui->txtEditorField->appendPlainText(QString::fromUtf8("1. "));
+        txtEditor->appendPlainText(QString::fromUtf8("1. "));
         SetLetters(true);
     }
 }
@@ -73,26 +80,26 @@ void EditorWindow::SetLetters(bool isCapital){
     else{
         capital2.setFontCapitalization(QFont::MixedCase);
     }
-    ui->txtEditorField->setCurrentCharFormat(capital2);
+    txtEditor->setCurrentCharFormat(capital2);
 }
 
 bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
 {
-    if (obj == ui->txtEditorField && e->type() == QEvent::KeyRelease) {
+    if (obj == txtEditor && e->type() == QEvent::KeyRelease) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(e);
         if (keyEvent->key() == Qt::Key_Return ||
             keyEvent->key() == Qt::Key_Enter)
         {
             if (markedListOn) {
-                ui->txtEditorField->appendPlainText(QString::fromUtf8("+ "));
+                txtEditor->appendPlainText(QString::fromUtf8("+ "));
             }
             else if (numberedListOn) {
-                ui->txtEditorField->insertPlainText(QString::number(++numberedListCounter) +
+                txtEditor->insertPlainText(QString::number(++numberedListCounter) +
                                                     QString::fromUtf8(". "));
             }
             else if(lectureNameEdit){
-                ui->txtEditorField->textCursor().deletePreviousChar();
-                ui->txtEditorField->insertPlainText(" " + QDate::currentDate().toString() + "\n\n");
+                txtEditor->textCursor().deletePreviousChar();
+                txtEditor->insertPlainText(" " + QDate::currentDate().toString() + "\n\n");
                 this->lectureNameEdit = false;
             }
 
@@ -108,7 +115,7 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
         else if(keyEvent->key() == Qt::Key_Space){
             //Let's make letters capital after a dot!
 
-            QTextCursor cursor = ui->txtEditorField->textCursor();
+            QTextCursor cursor = txtEditor->textCursor();
             cursor.movePosition(QTextCursor::PreviousCharacter);
             cursor.select(QTextCursor::WordUnderCursor);
             QString c = cursor.selectedText().right(1);
@@ -151,24 +158,24 @@ void EditorWindow::resetToBaseState()
 
 void EditorWindow::on_actionLineTildas_triggered()
 {
-    ui->txtEditorField->appendPlainText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    txtEditor->appendPlainText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
 void EditorWindow::on_actionHeader_triggered()
 {
-    ui->txtEditorField->insertPlainText("------------");
+    txtEditor->insertPlainText("------------");
     SetLetters(true);
 }
 
 void EditorWindow::on_actionDefinition_triggered()
 {
-    ui->txtEditorField->insertPlainText("\n-> ");
+    txtEditor->insertPlainText("\n-> ");
     SetLetters(true);
 }
 
 void EditorWindow::on_actionLecture_triggered()
 {
-    ui->txtEditorField->appendPlainText("\n===Lecture #");
+    txtEditor->appendPlainText("\n===Lecture #");
     this->lectureNameEdit = true;
 }
 
@@ -208,7 +215,7 @@ void EditorWindow::on_actionSave_triggered()
         // Write contents to txt file:
         QTextStream out(&file);
         out.setCodec("UTF-8");
-        out << ui->txtEditorField->toPlainText();
+        out << txtEditor->toPlainText();
 
         // Change system variables
         currentFileName = saveFileName;
@@ -265,7 +272,7 @@ void EditorWindow::on_actionOpen_triggered()
         resetToBaseState();
 
         // Insert data into editor
-        ui->txtEditorField->setPlainText(contents);
+        txtEditor->setPlainText(contents);
         currentFileName = loadFileName;
 
         documentWasSaved = true;
@@ -293,14 +300,18 @@ void EditorWindow::closeEvent(QCloseEvent *e)
 
 void EditorWindow::on_actionNew_triggered()
 {
-    bool decision = haveUnsavedChanges();
+   /* bool decision = haveUnsavedChanges();
 
     if (decision) {
         return;
     }
     // Reset window
-    ui->txtEditorField->clear();
-    resetToBaseState();
+    txtEditor->clear();
+    resetToBaseState();*/
+    QPlainTextEdit *newEditor = new QPlainTextEdit;
+    newEditor->setFont(QFont("Lucida Console", 12));
+    ui->tabWidget->addTab(newEditor, "untitled");
+    editors.append(newEditor);
 }
 
 // Supplemental functionality
@@ -351,10 +362,10 @@ void EditorWindow::on_searchButton_clicked()
 
 void EditorWindow::on_searchRequest_textChanged(const QString &arg1)
 {
-    ui->txtEditorField->moveCursor(QTextCursor::Start);
+    txtEditor->moveCursor(QTextCursor::Start);
     //Some improvements fore live search
     QString s = ui->searchRequest->text();
-    if(!ui->searchRequest->text().isEmpty() && !ui->txtEditorField->find(s)){
+    if(!ui->searchRequest->text().isEmpty() && !txtEditor->find(s)){
         ui->searchRequest->setStyleSheet("QLineEdit{background: #FF3848;}");
     }
     else ui->searchRequest->setStyleSheet("QLineEdit{background: white;}");
@@ -367,22 +378,30 @@ void EditorWindow::on_searchRequest_returnPressed()
 
 void EditorWindow::StartSearch(){
     QString s = ui->searchRequest->text();
-    ui->txtEditorField->setFocus();
-    if(!ui->txtEditorField->find(s)){
+    txtEditor->setFocus();
+    if(!txtEditor->find(s)){
         QMessageBox::information(this,
                                               "Nothing found",
                                               "Find reached the starting point of the search",
                                               QMessageBox::Ok);
-        ui->txtEditorField->setFocus();
-        ui->txtEditorField->moveCursor(QTextCursor::Start);
-        ui->txtEditorField->find(s);
+        txtEditor->setFocus();
+        txtEditor->moveCursor(QTextCursor::Start);
+        txtEditor->find(s);
     }
 }
 
 void EditorWindow::on_findLectureButton_clicked()
 {
-    ui->txtEditorField->setFocus();
-    ui->txtEditorField->moveCursor(QTextCursor::Start);
+    txtEditor->setFocus();
+    txtEditor->moveCursor(QTextCursor::Start);
     QString s = "===Lecture #" + ui->lectureNumberField->text();
-    ui->txtEditorField->find(s);
+    txtEditor->find(s);
+}
+
+void EditorWindow::on_tabWidget_currentChanged(int index)
+{
+    //txtEditor->
+    txtEditor = editors.at(index);
+    txtEditor->installEventFilter(this);
+    //txtEditor = ui->tabWidget->currentWidget();
 }

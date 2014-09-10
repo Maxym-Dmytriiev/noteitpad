@@ -2,6 +2,8 @@
 #define EDITORWINDOW_H
 
 #include <QMainWindow>
+#include <QPlainTextEdit>
+#include <QVector>
 
 namespace Ui {
 class EditorWindow;
@@ -52,11 +54,16 @@ private slots:
 
     void on_actionDefinition_triggered();
 
+    void on_tabWidget_currentChanged(int index);
+
 protected:
     void closeEvent(QCloseEvent *e);
 
 private:
     Ui::EditorWindow *ui;
+
+    QPlainTextEdit *txtEditor;
+    QVector<QPlainTextEdit*> editors;
 
     bool documentWasSaved;
     bool markedListOn;
