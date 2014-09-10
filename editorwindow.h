@@ -46,6 +46,8 @@ private slots:
 
     void StartSearch();
 
+    void SetLetters(bool isCapital);
+
 protected:
     void closeEvent(QCloseEvent *e);
 

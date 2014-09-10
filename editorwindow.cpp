@@ -14,10 +14,9 @@ EditorWindow::EditorWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::EditorWindow)
 {
-    QTextCharFormat SetLettersCapital();
     ui->setupUi(this);
     ui->txtEditorField->installEventFilter(this);
-    ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
+    SetLetters(true);
 
     this->setFixedSize(width(), height());
     addAction(ui->actionSaveAs);
@@ -42,6 +41,7 @@ void EditorWindow::on_actionList_triggered(bool condition)
 
     if (condition) {
         ui->txtEditorField->appendPlainText(QString::fromUtf8("+ "));
+        SetLetters(true);
     }
 }
 
@@ -59,15 +59,21 @@ void EditorWindow::on_actionNumberedList_triggered(bool condition)
 
     if (condition) {
         ui->txtEditorField->appendPlainText(QString::fromUtf8("1. "));
+        SetLetters(true);
     }
 }
 
-QTextCharFormat SetLettersCapital(){
+void EditorWindow::SetLetters(bool isCapital){
     //We set letters to capital
 
     QTextCharFormat capital2;
-    capital2.setFontCapitalization(QFont::Capitalize);
-    return capital2;
+    if(isCapital){
+        capital2.setFontCapitalization(QFont::Capitalize);
+    }
+    else{
+        capital2.setFontCapitalization(QFont::MixedCase);
+    }
+    ui->txtEditorField->setCurrentCharFormat(capital2);
 }
 
 bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
@@ -96,7 +102,7 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
              */
             if(lectureNameEdit) this->lectureNameEdit = false;
 
-            ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
+            SetLetters(true);
             return true;
         }
         else if(keyEvent->key() == Qt::Key_Space){
@@ -107,10 +113,11 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
             cursor.select(QTextCursor::WordUnderCursor);
             QString c = cursor.selectedText().right(1);
             if(c == "."){
-                ui->txtEditorField->setCurrentCharFormat(SetLettersCapital());
+                SetLetters(true);
             }
         }
         else {
+            SetLetters(false);
             return QMainWindow::eventFilter(obj, e);
         }
     }
@@ -150,6 +157,7 @@ void EditorWindow::on_actionLineTildas_triggered()
 void EditorWindow::on_actionHeader_triggered()
 {
     ui->txtEditorField->insertPlainText("------------");
+    SetLetters(true);
 }
 
 void EditorWindow::on_actionLecture_triggered()
