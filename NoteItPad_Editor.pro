@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     aboutwindow.cpp
 
 HEADERS  += editorwindow.h \
-    aboutwindow.h
+    aboutwindow.h \
+    tabSettings.h
 
 FORMS    += editorwindow.ui \
     aboutwindow.ui

@@ -50,6 +50,9 @@ private slots:
 
     void SetLetters(bool isCapital);
 
+    QPlainTextEdit* CreateTab();
+    QPlainTextEdit* CreateTab(QString tabName);
+
     void on_findLectureButton_clicked();
 
     void on_actionDefinition_triggered();

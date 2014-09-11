@@ -16,11 +16,7 @@ EditorWindow::EditorWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QPlainTextEdit *newEditor = new QPlainTextEdit;
-    newEditor->setFont(QFont("Lucida Console", 12));
-    editors.append(newEditor);
-    ui->tabWidget->addTab(newEditor, "untitled");
-    txtEditor = newEditor;
+    txtEditor = CreateTab();
 
     txtEditor->installEventFilter(this);
     SetLetters(true);
@@ -35,6 +31,22 @@ EditorWindow::EditorWindow(QWidget *parent) :
 EditorWindow::~EditorWindow()
 {
     delete ui;
+}
+
+QPlainTextEdit* EditorWindow::CreateTab(){
+    QPlainTextEdit *newEditor = new QPlainTextEdit;
+    newEditor->setFont(QFont("Lucida Console", 12));
+    editors.append(newEditor);
+    ui->tabWidget->addTab(newEditor, "untitled");
+    return newEditor;
+}
+
+QPlainTextEdit* EditorWindow::CreateTab(QString tabName){
+    QPlainTextEdit *newEditor = new QPlainTextEdit;
+    newEditor->setFont(QFont("Lucida Console", 12));
+    editors.append(newEditor);
+    ui->tabWidget->addTab(newEditor, tabName);
+    return newEditor;
 }
 
 // Shortcuts implementation
@@ -271,6 +283,8 @@ void EditorWindow::on_actionOpen_triggered()
         // Reset window
         resetToBaseState();
 
+        txtEditor = CreateTab(QFileInfo(file).baseName());
+
         // Insert data into editor
         txtEditor->setPlainText(contents);
         currentFileName = loadFileName;
@@ -308,10 +322,7 @@ void EditorWindow::on_actionNew_triggered()
     // Reset window
     txtEditor->clear();
     resetToBaseState();*/
-    QPlainTextEdit *newEditor = new QPlainTextEdit;
-    newEditor->setFont(QFont("Lucida Console", 12));
-    ui->tabWidget->addTab(newEditor, "untitled");
-    editors.append(newEditor);
+    CreateTab();
 }
 
 // Supplemental functionality
