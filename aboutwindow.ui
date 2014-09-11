@@ -72,7 +72,7 @@ Alt + &quot; 1 &quot; - Numbered list
 Alt + &quot; + &quot; - Marked list
 Alt + &quot; 2 &quot; - Separator line
 Alt + &quot; - &quot; - Header line
-Alt + &quot;right&quot; - Defenition</string>
+Alt + &quot; -&gt;&quot; - Definition</string>
      </property>
     </widget>
    </widget>
@@ -94,7 +94,7 @@ Alt + &quot;right&quot; - Defenition</string>
     <property name="title">
      <string>About</string>
     </property>
-    <widget class="QPushButton" name="btnOpenWebsite">
+    <widget class="QPushButton" name="btnOpenBitbucket">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -144,10 +144,10 @@ Alt + &quot;right&quot; - Defenition</string>
 to make notes of their lectures</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnOpenWebsite_2">
+    <widget class="QPushButton" name="btnOpenGithub">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>93</x>
        <y>50</y>
        <width>81</width>
        <height>23</height>

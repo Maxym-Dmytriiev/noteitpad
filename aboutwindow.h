@@ -16,9 +16,9 @@ public:
     ~AboutWindow();
 
 private slots:
-    void on_btnOpenWebsite_clicked();
+    void on_btnOpenBitbucket_clicked();
 
-    void on_btnOpenWebsite_2_clicked();
+    void on_btnOpenGithub_clicked();
 
 private:
     Ui::aboutWindow *ui;

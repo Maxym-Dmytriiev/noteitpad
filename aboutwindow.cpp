@@ -16,12 +16,12 @@ AboutWindow::~AboutWindow()
     delete ui;
 }
 
-void AboutWindow::on_btnOpenWebsite_clicked()
+void AboutWindow::on_btnOpenBitbucket_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://bitbucket.org/mdmitriev/noteitpad"));
 }
 
-void AboutWindow::on_btnOpenWebsite_2_clicked()
+void AboutWindow::on_btnOpenGithub_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://github.com/Maxym-Dmytriiev/noteitpad"));
 }

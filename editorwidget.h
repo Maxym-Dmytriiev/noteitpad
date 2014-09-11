@@ -2,6 +2,7 @@
 #define EDITORWIDGET_H
 
 #include <QPlainTextEdit>
+#include "editorsettings.h"
 
 class EditorWidget : public QPlainTextEdit
 {
@@ -12,6 +13,9 @@ public:
 signals:
 
 public slots:
+
+private:
+    EditorSettings *settings;
 
 };
 

@@ -15,16 +15,11 @@ EditorWindow::EditorWindow(QWidget *parent) :
     ui(new Ui::EditorWindow)
 {
     ui->setupUi(this);
-
-    txtEditor = CreateTab();
-
-    txtEditor->installEventFilter(this);
-    SetLetters(true);
-
     this->setFixedSize(width(), height());
-    addAction(ui->actionSaveAs);
 
-    resetToBaseState();
+    //addAction(ui->actionSaveAs);
+
+    //resetToBaseState();
 
 }
 
@@ -32,23 +27,7 @@ EditorWindow::~EditorWindow()
 {
     delete ui;
 }
-
-QPlainTextEdit* EditorWindow::CreateTab(){
-    QPlainTextEdit *newEditor = new QPlainTextEdit;
-    newEditor->setFont(QFont("Lucida Console", 12));
-    editors.append(newEditor);
-    ui->tabWidget->addTab(newEditor, "untitled");
-    return newEditor;
-}
-
-QPlainTextEdit* EditorWindow::CreateTab(QString tabName){
-    QPlainTextEdit *newEditor = new QPlainTextEdit;
-    newEditor->setFont(QFont("Lucida Console", 12));
-    editors.append(newEditor);
-    ui->tabWidget->addTab(newEditor, tabName);
-    return newEditor;
-}
-
+/*
 // Shortcuts implementation
 void EditorWindow::on_actionList_triggered(bool condition)
 {
@@ -85,14 +64,14 @@ void EditorWindow::on_actionNumberedList_triggered(bool condition)
 void EditorWindow::SetLetters(bool isCapital){
     //We set letters to capital
 
-    QTextCharFormat capital2;
+    QTextCharFormat capital;
     if(isCapital){
-        capital2.setFontCapitalization(QFont::Capitalize);
+        capital.setFontCapitalization(QFont::Capitalize);
     }
     else{
-        capital2.setFontCapitalization(QFont::MixedCase);
+        capital.setFontCapitalization(QFont::MixedCase);
     }
-    txtEditor->setCurrentCharFormat(capital2);
+    txtEditor->setCurrentCharFormat(capital);
 }
 
 bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
@@ -115,10 +94,10 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
                 this->lectureNameEdit = false;
             }
 
-            /*
-             * A little fix that prevents data appearing again
-             * if enter was pressed after list (or smth else)
-             */
+
+             // A little fix that prevents data appearing again
+             // if enter was pressed after list (or smth else)
+
             if(lectureNameEdit) this->lectureNameEdit = false;
 
             SetLetters(true);
@@ -283,7 +262,7 @@ void EditorWindow::on_actionOpen_triggered()
         // Reset window
         resetToBaseState();
 
-        txtEditor = CreateTab(QFileInfo(file).baseName());
+        // txtEditor = CreateTab(QFileInfo(file).baseName());
 
         // Insert data into editor
         txtEditor->setPlainText(contents);
@@ -314,22 +293,19 @@ void EditorWindow::closeEvent(QCloseEvent *e)
 
 void EditorWindow::on_actionNew_triggered()
 {
-   /* bool decision = haveUnsavedChanges();
+    bool decision = haveUnsavedChanges();
 
     if (decision) {
         return;
     }
     // Reset window
     txtEditor->clear();
-    resetToBaseState();*/
-    CreateTab();
+    resetToBaseState();
+    //CreateTab();
 }
 
 // Supplemental functionality
-void EditorWindow::on_txtEditorField_textChanged()
-{
-    textWasChanged = true;
-}
+
 
 bool EditorWindow::haveUnsavedChanges()
 {
@@ -411,8 +387,5 @@ void EditorWindow::on_findLectureButton_clicked()
 
 void EditorWindow::on_tabWidget_currentChanged(int index)
 {
-    //txtEditor->
-    txtEditor = editors.at(index);
-    txtEditor->installEventFilter(this);
-    //txtEditor = ui->tabWidget->currentWidget();
 }
+*/

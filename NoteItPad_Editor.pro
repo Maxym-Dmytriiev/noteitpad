@@ -14,11 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         editorwindow.cpp \
-    aboutwindow.cpp
+    aboutwindow.cpp \
+    editorwidget.cpp \
+    editorsettings.cpp
 
 HEADERS  += editorwindow.h \
     aboutwindow.h \
-    tabSettings.h
+    editorwidget.h \
+    editorsettings.h
 
 FORMS    += editorwindow.ui \
     aboutwindow.ui
