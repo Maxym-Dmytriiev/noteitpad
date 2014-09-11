@@ -10,6 +10,9 @@ class EditorWidget : public QPlainTextEdit
 public:
     explicit EditorWidget(QWidget *parent = 0);
 
+    EditorSettings *getSettings() const;
+    void setSettings(EditorSettings *value);
+
 signals:
 
 public slots:

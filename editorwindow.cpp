@@ -12,14 +12,15 @@
 
 EditorWindow::EditorWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::EditorWindow)
+    ui(new Ui::EditorWindow), editor(new EditorWidget())
 {
     ui->setupUi(this);
     this->setFixedSize(width(), height());
 
-    //addAction(ui->actionSaveAs);
+    ui->tabWidget->addTab(editor, "Untitled");
+    editor->setFocus();
 
-    //resetToBaseState();
+    //addAction(ui->actionSaveAs);
 
 }
 
@@ -27,39 +28,40 @@ EditorWindow::~EditorWindow()
 {
     delete ui;
 }
+
+// Resets menu buttons to their default state
+void EditorWindow::setStateToDefault()
+{
+    ui->actionMarkedList->setEnabled(true);
+    ui->actionMarkedList->setChecked(false);
+
+    ui->actionNumberedList->setEnabled(true);
+    ui->actionNumberedList->setChecked(false);
+
+}
+
+// Sets state of menu buttons according to EditorSettings object data
+void EditorWindow::setStateFromSettings(const EditorSettings *source)
+{
+    if (source->getMarkedListOn()) {
+        ui->actionMarkedList->setChecked(true);
+        ui->actionNumberedList->setEnabled(false);
+    }
+    else if (source->getNumberedListOn()) {
+        ui->actionNumberedList->setChecked(true);
+        ui->actionMarkedList->setEnabled(false);
+    }
+}
+
+void EditorWindow::createTab(QString tabName)
+{
+    ui->tabWidget->addTab(new EditorWidget(), tabName);
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    ui->tabWidget->widget(ui->tabWidget->count() - 1)->setFocus();
+}
+
 /*
-// Shortcuts implementation
-void EditorWindow::on_actionList_triggered(bool condition)
-{
-    // Switch button states
-    ui->actionNumberedList->setEnabled(!condition);
 
-    // Setup list states
-    markedListOn = condition;
-
-    if (condition) {
-        txtEditor->appendPlainText(QString::fromUtf8("+ "));
-        SetLetters(true);
-    }
-}
-
-void EditorWindow::on_actionNumberedList_triggered(bool condition)
-{
-    // Switch button states
-    ui->actionList->setEnabled(!condition);
-
-    // Setup list states
-    numberedListOn = condition;
-
-    if (!numberedListOn) {
-        numberedListCounter = 1;
-    }
-
-    if (condition) {
-        txtEditor->appendPlainText(QString::fromUtf8("1. "));
-        SetLetters(true);
-    }
-}
 
 void EditorWindow::SetLetters(bool isCapital){
     //We set letters to capital
@@ -95,7 +97,7 @@ bool EditorWindow::eventFilter(QObject *obj, QEvent *e)
             }
 
 
-             // A little fix that prevents data appearing again
+             // A little fix that prevents date appearing again
              // if enter was pressed after list (or smth else)
 
             if(lectureNameEdit) this->lectureNameEdit = false;

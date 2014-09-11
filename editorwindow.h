@@ -15,12 +15,15 @@ class EditorWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     explicit EditorWindow(QWidget *parent = 0);
     ~EditorWindow();
 
-
 private slots:
-/*
+
+    void on_actionNew_triggered();
+
+    /*
     // Shortcuts functionality
     void on_actionList_triggered(bool condition);
     void on_actionNumberedList_triggered(bool condition);
@@ -43,28 +46,24 @@ private slots:
     void on_findLectureButton_clicked();
     void on_actionDefinition_triggered();
     void on_tabWidget_currentChanged(int index);
-*/
+    */
 protected:
     //void closeEvent(QCloseEvent *e);
 
 private:
     Ui::EditorWindow *ui;
+    EditorWidget *editor;
 
-    EditorWidget *txtEditor;
-
-
-    QString currentFileName;
-
-    bool haveUnsavedChanges();
     //bool eventFilter(QObject *obj, QEvent *e);
 
-    void resetToBaseState();
+    // State management
+    void setStateToDefault();
+    void setStateFromSettings(const EditorSettings *source);
 
     void StartSearch();
     void SetLetters(bool isCapital);
 
-    QPlainTextEdit* CreateTab();
-    QPlainTextEdit* CreateTab(QString tabName);
+    void createTab(QString tabName = QString("Untitled"));
 };
 
 #endif // EDITORWINDOW_H

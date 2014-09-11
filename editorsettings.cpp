@@ -56,7 +56,7 @@ void EditorSettings::reset()
     numberedListOn = false;
     numberedListIndex = 1;
     documentWasSaved = false;
-    currentFileName = "Untitled";
+    currentFileName = QString::fromStdString("Untitled");
 }
 
 

@@ -27,9 +27,9 @@
    <widget class="QWidget" name="wEditorContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-1</x>
       <y>0</y>
-      <width>529</width>
+      <width>541</width>
       <height>531</height>
      </rect>
     </property>
@@ -87,7 +87,7 @@
    <widget class="QWidget" name="wSearchContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>3</x>
       <y>530</y>
       <width>331</width>
       <height>31</height>
@@ -244,7 +244,7 @@
    <addaction name="separator"/>
    <addaction name="actionDefinition"/>
    <addaction name="separator"/>
-   <addaction name="actionList"/>
+   <addaction name="actionMarkedList"/>
    <addaction name="separator"/>
    <addaction name="actionNumberedList"/>
    <addaction name="separator"/>
@@ -273,7 +273,7 @@
     <string>Alt+-</string>
    </property>
   </action>
-  <action name="actionList">
+  <action name="actionMarkedList">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -281,7 +281,7 @@
     <string>+ Ls</string>
    </property>
    <property name="toolTip">
-    <string>Unmarked list</string>
+    <string>Marked list</string>
    </property>
    <property name="shortcut">
     <string>Alt+=</string>

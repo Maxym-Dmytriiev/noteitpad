@@ -17,7 +17,6 @@ public:
 
 private slots:
     void on_btnOpenBitbucket_clicked();
-
     void on_btnOpenGithub_clicked();
 
 private:

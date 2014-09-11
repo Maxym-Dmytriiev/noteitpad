@@ -16,7 +16,9 @@ SOURCES += main.cpp\
         editorwindow.cpp \
     aboutwindow.cpp \
     editorwidget.cpp \
-    editorsettings.cpp
+    editorsettings.cpp \
+    editorwindow_shortcuts.cpp \
+    editorwindow_fileactions.cpp
 
 HEADERS  += editorwindow.h \
     aboutwindow.h \
