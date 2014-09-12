@@ -108,6 +108,9 @@ Alt + &quot; -&gt;&quot; - Definition</string>
        <pointsize>8</pointsize>
       </font>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
      <property name="text">
       <string>Bitbucket</string>
      </property>
@@ -157,6 +160,9 @@ to make notes of their lectures</string>
       <font>
        <pointsize>8</pointsize>
       </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
      </property>
      <property name="text">
       <string>GitHub</string>

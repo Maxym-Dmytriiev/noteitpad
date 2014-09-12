@@ -3,8 +3,12 @@
 
 #include <QString>
 
+class EditorWidget;
+
 class EditorSettings
 {
+    friend class EditorWidget;
+
 public:
     EditorSettings();
 
@@ -23,6 +27,9 @@ public:
     QString getCurrentFileName() const;
     void setCurrentFileName(const QString &value);
 
+    bool getTextWasChanged() const;
+    void setTextWasChanged(bool value);
+
     void reset();
 
 private:
@@ -31,6 +38,8 @@ private:
     bool numberedListOn;
     int numberedListIndex;
     bool documentWasSaved;
+
+    bool textWasChanged;
 
     QString currentFileName;
 

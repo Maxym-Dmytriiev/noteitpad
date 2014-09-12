@@ -13,12 +13,18 @@ public:
     EditorSettings *getSettings() const;
     void setSettings(EditorSettings *value);
 
-signals:
+    bool haveUnsavedChanges();
 
+    bool save(QFile * const file);
+
+signals:
+    void needToSave();
 public slots:
+    void on_textChanged();
 
 private:
     EditorSettings *settings;
+
 
 };
 

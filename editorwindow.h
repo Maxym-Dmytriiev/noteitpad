@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QVector>
 
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QTextStream>
+#include <QTime>
+
 #include "editorwidget.h"
 
 namespace Ui {
@@ -21,6 +26,7 @@ public:
 
 private slots:
 
+    // New tab creation
     void on_actionNew_triggered();
 
     /*
@@ -38,7 +44,6 @@ private slots:
 
     void on_actionNew_triggered();
     void on_actionSaveAs_triggered();
-    void on_actionHelp_triggered();
     void on_actionLecture_triggered();
     void on_searchButton_clicked();
     void on_searchRequest_textChanged(const QString &arg1);
@@ -47,6 +52,16 @@ private slots:
     void on_actionDefinition_triggered();
     void on_tabWidget_currentChanged(int index);
     */
+
+    // Tab widget operations
+    void on_tabWidget_tabCloseRequested(int index);
+    void on_tabWidget_currentChanged(int index);
+
+    // Toolbar click operations
+    void on_actionHelp_triggered();
+
+    void on_actionSave_triggered();
+
 protected:
     //void closeEvent(QCloseEvent *e);
 

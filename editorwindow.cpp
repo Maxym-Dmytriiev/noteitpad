@@ -3,11 +3,7 @@
 
 #include "aboutwindow.h"
 
-
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QTextStream>
-#include <QTime>
+#include <QDebug>
 
 
 EditorWindow::EditorWindow(QWidget *parent) :
@@ -53,11 +49,18 @@ void EditorWindow::setStateFromSettings(const EditorSettings *source)
     }
 }
 
+// Creates new tab with stated name
 void EditorWindow::createTab(QString tabName)
 {
-    ui->tabWidget->addTab(new EditorWidget(), tabName);
+    EditorWidget * newEditor = new EditorWidget();
+    ui->tabWidget->addTab(newEditor, tabName);
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
-    ui->tabWidget->widget(ui->tabWidget->count() - 1)->setFocus();
+
+    int lastWidgetIndex = ui->tabWidget->count() - 1;
+    ui->tabWidget->widget(lastWidgetIndex)->setFocus();
+
+    connect(newEditor, SIGNAL(needToSave()), this, SLOT(on_actionSave_triggered()));
+
 }
 
 /*
@@ -338,11 +341,7 @@ bool EditorWindow::haveUnsavedChanges()
     return false;
 }
 
-void EditorWindow::on_actionHelp_triggered()
-{
-    AboutWindow *about = new AboutWindow(this);
-    about->show();
-}
+
 
 void EditorWindow::on_searchButton_clicked()
 {
@@ -391,3 +390,28 @@ void EditorWindow::on_tabWidget_currentChanged(int index)
 {
 }
 */
+
+void EditorWindow::on_tabWidget_tabCloseRequested(int index)
+{
+    if (editor->haveUnsavedChanges()) {
+        return;
+    }
+
+    if (ui->tabWidget->count() == 1) {
+        createTab();
+    }
+
+    ui->tabWidget->removeTab(index);
+
+}
+
+void EditorWindow::on_tabWidget_currentChanged(int index)
+{
+    this->editor = dynamic_cast<EditorWidget*>(ui->tabWidget->widget(index));
+
+    setStateToDefault();
+    setStateFromSettings(editor->getSettings());
+
+    qDebug() << editor << endl;
+}
+

@@ -50,6 +50,16 @@ void EditorSettings::setCurrentFileName(const QString &value)
     currentFileName = value;
 }
 
+bool EditorSettings::getTextWasChanged() const
+{
+    return textWasChanged;
+}
+void EditorSettings::setTextWasChanged(bool value)
+{
+    textWasChanged = value;
+}
+
+
 void EditorSettings::reset()
 {
     markedListOn = false;
@@ -58,6 +68,8 @@ void EditorSettings::reset()
     documentWasSaved = false;
     currentFileName = QString::fromStdString("Untitled");
 }
+
+
 
 
 

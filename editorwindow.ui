@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>531</width>
-    <height>613</height>
+    <width>535</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::NoContextMenu</enum>
+   <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>NoteIt Text Editor</string>
@@ -29,7 +29,7 @@
      <rect>
       <x>-1</x>
       <y>0</y>
-      <width>541</width>
+      <width>539</width>
       <height>531</height>
      </rect>
     </property>
@@ -48,37 +48,20 @@
      </property>
      <item row="0" column="0">
       <widget class="QTabWidget" name="tabWidget">
+       <property name="font">
+        <font>
+         <family>Lucida Console</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
        <property name="currentIndex">
         <number>-1</number>
        </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>530</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Lecture #</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lectureNumberField"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="findLectureButton">
-       <property name="text">
-        <string>Go</string>
+       <property name="tabsClosable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -87,59 +70,97 @@
    <widget class="QWidget" name="wSearchContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>3</x>
+      <x>0</x>
       <y>530</y>
-      <width>331</width>
-      <height>31</height>
+      <width>371</width>
+      <height>41</height>
      </rect>
     </property>
-    <widget class="QLineEdit" name="searchRequest">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>6</y>
-       <width>241</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="mouseTracking">
-      <bool>false</bool>
-     </property>
-     <property name="inputMask">
-      <string/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-     </property>
-     <property name="placeholderText">
-      <string>Something to search...</string>
-     </property>
-     <property name="clearButtonEnabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="searchButton">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>5</y>
-       <width>71</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>23</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Find next</string>
-     </property>
-    </widget>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QLineEdit" name="searchRequest">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Something to search...</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="searchButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Find next</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>530</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lectureNumberField">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="findLectureButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Go</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Lecture #</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -214,7 +235,7 @@
     </font>
    </property>
    <property name="contextMenuPolicy">
-    <enum>Qt::DefaultContextMenu</enum>
+    <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -388,8 +409,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>lectureNumberField</tabstop>
-  <tabstop>findLectureButton</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources>
